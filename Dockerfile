@@ -1,11 +1,12 @@
-FROM node:18
+FROM node:alpine
+
+COPY . /app
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
 
-COPY . .
+RUN npm install
 
 # Change to actual entry file
 CMD ["node", "src/index.js"]
