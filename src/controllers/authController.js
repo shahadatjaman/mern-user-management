@@ -4,7 +4,7 @@ const generateToken = require('../utils/generateToken');
 const AppError = require('../utils/AppError');
 const { deleteFile } = require('../utils/fileService');
 
-exports.register = async (req, res,next) => {
+exports.register = async (req, res) => {
  try {
   const { name, email, password } = req.body;
   const avatar = req.file ? req.file.path : '';
@@ -20,19 +20,22 @@ exports.register = async (req, res,next) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
+  const fileUrl = `http://localhost:5000/uploads/avatars/${req.file.filename}`;
 
   const user = await User.create({
     name,
     email,
     password: hashedPassword,
-    avatar,
+    avatar:fileUrl,
   });
 
   const token = generateToken(user._id);
 
+
+
   res.status(201).json({
-    user: { id: user._id, name: user.name, email: user.email, role: user.role },
-    token, avatar: user.avatar
+    user: { id: user._id, name: user.name, email: user.email, role: user.role,avatar: user.avatar },
+    token
   });
  } catch (error) {
   // Remove uploaded file if exists
@@ -58,7 +61,7 @@ exports.login = async (req, res, next) => {
   const token = generateToken(user._id);
 
   res.json({
-    user: { id: user._id, name: user.name, email: user.email, role: user.role },
+    user: { id: user._id, name: user.name, email: user.email, role: user.role,avatar:user.avatar },
     token
   });
 };
