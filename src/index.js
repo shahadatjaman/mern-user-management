@@ -2,18 +2,22 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const multer = require('multer');
+const path = require('path');
 
 
 const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/authRoutes');
-const AppError = require('./utils/AppError');
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+
+// Serve files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 // Middleware: HTTP request logger
 if (process.env.NODE_ENV === 'production') {
