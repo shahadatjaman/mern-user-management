@@ -9,11 +9,9 @@ const userSchema = new mongoose.Schema(
       minlength: 2
     },
     avatar: {
-        type: String,
-        required: [true, 'Avatar is required'],
-        trim: true,
-        minlength: 2
-      },
+      type: String,
+      default: ''
+    },
     email: {
       type: String,
       required: [true, 'Email is required'],
