@@ -56,15 +56,14 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
-// Global error handler for handling JSON parsing errors
+// Global error handler for malformed JSON
 app.use((err, req, res, next) => {
-  if (err instanceof SyntaxError) {
-    // This will handle cases where JSON is malformed
-    return res.status(400).json({ error: 'Invalid JSON format' });
+  if (err instanceof SyntaxError) { // Handles invalid JSON format
+    return res.status(400).json({
+      error: 'Invalid JSON format. Please send valid JSON data.'
+    });
   }
-
-  // For other errors, pass it to the default error handler
-  next(err);
+  next(err); // If error is not related to JSON, pass it to the next handler
 });
 
 connectDB();
