@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const { register, login, refreshToken, logout } = require('../controllers/authController');
 const { registerValidator, loginValidator } = require('../validators/authValidator');
 const validateRequest = require('../middleware/validateRequest');
 const upload = require('../middleware/uploadAvatar');
@@ -15,5 +15,7 @@ router.post(
   
 router.post('/login', loginValidator, validateRequest, login);
 
+router.post('/refresh', refreshToken);
+router.post('/logout', logout);
 
 module.exports = router;
