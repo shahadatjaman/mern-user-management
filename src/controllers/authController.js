@@ -7,7 +7,6 @@ const { deleteFile } = require('../utils/fileService');
 exports.register = async (req, res) => {
  try {
   const { name, email, password } = req.body;
-  const avatar = req.file ? req.file.path : '';
 
   const userExists = await User.findOne({ email });
 
@@ -19,19 +18,16 @@ exports.register = async (req, res) => {
     return AppError(res,'Email already in use', 400);
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
   const fileUrl = `http://localhost:5000/uploads/avatars/${req.file.filename}`;
 
   const user = await User.create({
     name,
     email,
-    password: hashedPassword,
+    password,
     avatar:fileUrl,
   });
 
   const token = generateToken(user._id);
-
-
 
   res.status(201).json({
     user: { id: user._id, name: user.name, email: user.email, role: user.role,avatar: user.avatar },
