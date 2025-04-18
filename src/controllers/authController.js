@@ -38,7 +38,6 @@ exports.register = async (req, res) => {
   if (req.file && req.file.path) {
     deleteFile(req.file.path);
   }
-
   res.status(500).json({
     statusCode:500,
     message:"There was an server error!"
