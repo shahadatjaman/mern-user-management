@@ -40,6 +40,13 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
+
+app.use('/api/projects', require('./routes/projectRoutes'));
+app.use('/api/tasks', require('./routes/taskRoutes'));
+
+app.use('/api/comments', require('./routes/commentRoutes'));
+
+
 app.use('/uploads', express.static('uploads'));
 
 app.use((err, req, res, next) => {
