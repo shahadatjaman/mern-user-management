@@ -8,7 +8,7 @@ const {
 } = require('../controllers/subtaskController');
 
 const {restrictTo, protect} = require('../middleware/authMiddleware');
-const validateSubtask = require('../validators/validateSubtask');
+const validateSubtask = require('../middleware/validateSubtask');
 
 router.use(protect);
 

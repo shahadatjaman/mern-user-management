@@ -6,7 +6,7 @@ const {
   getUserProjects,
 
 } = require('../controllers/projectController');
-const validateProject = require('../validators/validateProject');
+const validateProject = require('../middleware/validateProject');
 
 const router = express.Router();
 

@@ -6,7 +6,7 @@ const {
   getProjectTasks,
 
 } = require('../controllers/taskController');
-const { createTaskValidator } = require('../validators/taskValidator');
+const { createTaskValidator } = require('../middleware/taskValidator');
 const validateBodyNotEmpty = require('../middleware/validateBodyNotEmpty');
 const validateRequest = require('../middleware/validateRequest');
 

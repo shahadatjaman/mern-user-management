@@ -8,7 +8,7 @@ const {
   updateComment,
   deleteComment
 } = require('../controllers/commentController');
-const validateComment = require('../validators/validateComment');
+const validateComment = require('../middleware/validateComment');
 
 const router = express.Router();
 
