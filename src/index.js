@@ -42,9 +42,12 @@ app.use('/api/users', userRoutes);
 
 
 app.use('/api/projects', require('./routes/projectRoutes'));
+
 app.use('/api/tasks', require('./routes/taskRoutes'));
 
 app.use('/api/comments', require('./routes/commentRoutes'));
+
+app.use('/api/subtasks', require('./routes/subtaskRoutes'));
 
 
 app.use('/uploads', express.static('uploads'));
