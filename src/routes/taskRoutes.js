@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.use(protect); // All routes below this require authentication
 
-router.post('/',restrictTo('admin','manager','member'),validateBodyNotEmpty,createTaskValidator,validateRequest,createTask);
+router.post('/',restrictTo('admin','manager','member'),createTaskValidator,validateRequest,createTask);
 router.get('/project/:id', restrictTo('admin','manager','member'),getProjectTasks);
 
 module.exports = router;
