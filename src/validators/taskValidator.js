@@ -45,22 +45,4 @@ exports.createTaskValidator = [
     .isArray().withMessage('Labels must be an array of strings')
     .custom((arr) => arr.every((label) => typeof label === 'string'))
     .withMessage('Each label must be a string'),
-
-  body('attachments')
-    .optional()
-    .isArray().withMessage('Attachments must be an array of strings')
-    .custom((arr) => arr.every((url) => typeof url === 'string'))
-    .withMessage('Each attachment must be a string'),
-
-  body('comments')
-    .optional()
-    .isArray().withMessage('Comments must be an array')
-    .custom((arr) =>
-      arr.every(
-        (comment) =>
-          typeof comment.text === 'string' &&
-          (!comment.user || mongoose.Types.ObjectId.isValid(comment.user))
-      )
-    )
-    .withMessage('Each comment must have a text string and optional valid user ID')
 ];
