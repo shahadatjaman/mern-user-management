@@ -1,15 +1,19 @@
+const { Types } = require('mongoose');
 const Comment = require('../models/Comment');
 const Task = require('../models/Task');
 
 exports.createComment = async (req, res) => {
   try {
     const { task, content } = req.body;
-    const author = req.user._id;
+    
+    const taskId = new Types.ObjectId(task);
 
-    const taskExists = await Task.findById(task);
+    const author = new Types.ObjectId(req.user._id);
+
+    const taskExists = await Task.findById(taskId);
     if (!taskExists) return res.status(404).json({ message: 'Task not found' });
 
-    const comment = await Comment.create({ task, author, content });
+    const comment = await Comment.create({ task:taskId, author, content });
     res.status(201).json(comment);
   } catch (err) {
     res.status(500).json({ message: 'Failed to create comment', error: err.message });
