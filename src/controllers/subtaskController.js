@@ -16,7 +16,7 @@ exports.createSubtask = async (req, res) => {
 exports.getSubtasksByTask = async (req, res) => {
   try {
 
-    if(!isValidObjectId(req.params.id)){
+    if(!isValidObjectId(req.params.taskId)){
       return res.status(400).json({message:"Invalid ObjectId"});
     };
 
