@@ -46,7 +46,7 @@ exports.register = async (req, res) => {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 7 * 24 * 60 * 60 * 1000,
-    }).json({ accessToken });
+    }).json({ accessToken,user });
 
  } catch (error) {
   // Remove uploaded file if exists
