@@ -22,7 +22,7 @@ exports.getSubtasksByTask = async (req, res) => {
 
     const taskId = new Types.ObjectId(req.params.taskId);
 
-    const subtasks = await Subtask.find({ task: taskId }).populate('createdBy', 'name email');
+    const subtasks = await Subtask.find({ task: taskId }).populate('createdBy', 'name email avatar');
     res.json(subtasks);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch subtasks', error: err.message });
