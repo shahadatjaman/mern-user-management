@@ -26,7 +26,7 @@ exports.register = async (req, res) => {
     if (req.file && req.file.path) {
       deleteFile(req.file.path);
     }
-    return AppError(res,'Email already in use', 400);
+    return AppError(res,'Email already in use', 409);
   }
 
   const fileUrl = `http://localhost:5000/uploads/avatars/${req.file.filename}`;
