@@ -1,12 +1,15 @@
-const { isValidObjectId } = require('mongoose');
+const { isValidObjectId, Types } = require('mongoose');
 const Subtask = require('../models/Subtask');
 
 exports.createSubtask = async (req, res) => {
   try {
-    const { taskId, title } = req.body;
-    const subtask = await Subtask.create({ task: taskId, title });
+    const { taskId, title,createdBy } = req.body;
+    const taskObjId = new Types.ObjectId(taskId);
+    
+    const subtask = await Subtask.create({ task: taskObjId, title,createdBy });
     res.status(201).json(subtask);
   } catch (error) {
+    
     res.status(500).json({ message: 'Creating subtask failed', error });
   }
 };
