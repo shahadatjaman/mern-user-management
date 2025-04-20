@@ -15,13 +15,13 @@ afterAll(async () => {
   // await mongoose.connection.close();
 });
 
-describe("Auth API", () => {
+describe("AUTH API", () => {
   const uniqueEmail = `user${Date.now()}${Math.floor(Math.random() * 1000)}@example.com`;
 
   const userData = {
     name: "Shahadat",
-    email: uniqueEmail,
-    password: "shahadatjaman",
+    email: "shahadat12@gmail.com",
+    password: "shahadat12",
   };
 
   test("register a new user and should response with a 200 status code", async () => {
