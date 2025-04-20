@@ -1,7 +1,7 @@
-const request = require('supertest');
-const app = require('../index'); // adjust if your app export path is different
-const mongoose = require('mongoose');
-const path = require('path');
+const request = require("supertest");
+const app = require("../index"); // adjust if your app export path is different
+const mongoose = require("mongoose");
+const path = require("path");
 
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGO_URI, {
@@ -15,59 +15,75 @@ afterAll(async () => {
   // await mongoose.connection.close();
 });
 
-describe('Auth API', () => {
-  const uniqueEmail = `shahadat+${Math.random().toString(36).substring(2, 10)}@example.com`;
+describe("Auth API", () => {
+  const uniqueEmail = `user${Date.now()}${Math.floor(Math.random() * 1000)}@example.com`;
 
-    const userData = {
-        name: 'Shahadat',
-        email: uniqueEmail,
-        password: 'test1234'
-      };
+  const userData = {
+    name: "Shahadat",
+    email: uniqueEmail,
+    password: "shahadatjaman",
+  };
 
-  test('Register a new user', async () => {
+  test("register a new user and should response with a 200 status code", async () => {
     const res = await request(app)
-      .post('/api/auth/register')
-      .field('name', userData.name)
-      .field('email', userData.email)
-      .field('password', userData.password)
-      .attach('avatar', path.resolve(__dirname, 'test-avatar.jpg'));
+      .post("/api/auth/register")
+      .field("name", userData.name)
+      .field("email", userData.email)
+      .field("password", userData.password)
+      .attach("avatar", path.resolve(__dirname, "test-avatar.jpg"));
 
     expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty('accessToken');
-    expect(res.headers['set-cookie']).toBeDefined();
+    expect(res.body).toHaveProperty("accessToken");
+    expect(res.headers["set-cookie"]).toBeDefined();
   });
 
-  test('Login existing user', async () => {
+  test("When the user already exist then should response with a 409 status code", async () => {
     const res = await request(app)
-      .post('/api/auth/login')
-      .send(userData);
+      .post("/api/auth/register")
+      .field("name", userData.name)
+      .field("email", userData.email)
+      .field("password", userData.password)
+      .attach("avatar", path.resolve(__dirname, "test-avatar.jpg"));
 
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty('accessToken');
-    expect(res.headers['set-cookie']).toBeDefined();
+    expect(res.statusCode).toBe(409);
   });
 
-  test('Refresh token', async () => {
-    const login = await request(app).post('/api/auth/login').send(userData);
-    const cookies = login.headers['set-cookie'];
-
-    const res = await request(app)
-      .post('/api/auth/refresh')
-      .set('Cookie', cookies);
+  test("login existing user and should response with a 200 status cde", async () => {
+    const res = await request(app).post("/api/auth/login").send(userData);
 
     expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty('accessToken');
+    expect(res.body).toHaveProperty("accessToken");
+    expect(res.headers["set-cookie"]).toBeDefined();
   });
 
-  test('Logout user', async () => {
-    const login = await request(app).post('/api/auth/login').send(userData);
-    const cookies = login.headers['set-cookie'];
+  test("when username or passwor is wrong and should response with a 401 status code", async () => {
+    const wrongUserData = { ...userData, password: "wrongpassword" };
+
+    const res = await request(app).post("/api/auth/login").send(wrongUserData);
+    expect(res.statusCode).toBe(401);
+  });
+
+  test("get refresh token and should response with a 200 status code", async () => {
+    const login = await request(app).post("/api/auth/login").send(userData);
+    const cookies = login.headers["set-cookie"];
 
     const res = await request(app)
-      .post('/api/auth/logout')
-      .set('Cookie', cookies);
+      .post("/api/auth/refresh")
+      .set("Cookie", cookies);
 
     expect(res.statusCode).toBe(200);
-    expect(res.body.message).toBe('Logged out');
+    expect(res.body).toHaveProperty("accessToken");
+  });
+
+  test("Logout user and should response with a 200 status code", async () => {
+    const login = await request(app).post("/api/auth/login").send(userData);
+    const cookies = login.headers["set-cookie"];
+
+    const res = await request(app)
+      .post("/api/auth/logout")
+      .set("Cookie", cookies);
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("Logged out");
   });
 });
