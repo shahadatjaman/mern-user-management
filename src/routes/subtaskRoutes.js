@@ -1,39 +1,41 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const {
   createSubtask,
   getSubtasksByTask,
   updateSubtask,
   deleteSubtask,
-} = require('../controllers/subtaskController');
+} = require("../controllers/subtaskController");
 
-const {restrictTo, protect} = require('../middleware/authMiddleware');
-const validateSubtask = require('../middleware/validateSubtask');
+const { restrictTo, protect } = require("../middleware/authMiddleware");
+const validateSubtask = require("../middleware/validateSubtask");
+const validateUpdateSubtask = require("../middleware/validateUpdateSubtask");
 
 router.use(protect);
 
 router.post(
-  '/',
-  restrictTo('admin', 'manager', 'member'),
+  "/",
+  restrictTo("admin", "manager", "member"),
   validateSubtask,
   createSubtask
 );
 
 router.get(
-  '/task/:taskId',
-  restrictTo('admin', 'manager', 'member'),
+  "/task/:taskId",
+  restrictTo("admin", "manager", "member"),
   getSubtasksByTask
 );
 
-router.patch(
-  '/:subtaskId',
-  restrictTo('admin', 'manager', 'member'),
+router.put(
+  "/task/:id",
+  restrictTo("admin", "manager", "member"),
+  validateUpdateSubtask,
   updateSubtask
 );
 
 router.delete(
-  '/:subtaskId',
-  restrictTo('admin', 'manager', 'member'),
+  "/task/:id",
+  restrictTo("admin", "manager", "member"),
   deleteSubtask
 );
 
