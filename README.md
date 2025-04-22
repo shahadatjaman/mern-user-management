@@ -207,6 +207,10 @@ src/
 
 ## 🔗 API Endpoints
 
+Explore the complete API documentation for this project:
+
+➡️ [**Task Manager SaaS App – Developer API Documentation**](https://github.com/shahadatjaman/Task-Manager-SaaS-App---Developer-API-Documentation)
+
 ---
 
 ## 🧪 Testing
