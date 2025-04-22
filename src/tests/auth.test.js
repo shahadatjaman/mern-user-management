@@ -19,9 +19,9 @@ describe("AUTH API", () => {
   const uniqueEmail = `user${Date.now()}${Math.floor(Math.random() * 1000)}@example.com`;
 
   const userData = {
-    name: "Shahadat",
-    email: "shahadat12@gmail.com",
-    password: "shahadat12",
+    name: "test",
+    email: "test1234@gmail.com",
+    password: "test1234",
   };
 
   test("register a new user and should response with a 200 status code", async () => {
