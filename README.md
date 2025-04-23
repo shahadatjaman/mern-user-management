@@ -63,63 +63,6 @@ npm run dev
 
 ---
 
-## 🐳 Docker Setup
-
-### Dockerfile
-
-```dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-EXPOSE 5000
-
-CMD ["npm", "run", "dev"]
-```
-
-### docker-compose.yml
-
-```yaml
-version: "3.8"
-
-services:
-  api:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - PORT=5000
-      - MONGO_URI=mongodb://mongo:27017/task-manager
-      - ACCESS_TOKEN_SECRET=youraccesstokensecret
-      - REFRESH_TOKEN_SECRET=yourrefreshtokensecret
-    depends_on:
-      - mongo
-
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
-volumes:
-  mongo-data:
-```
-
-### Run with Docker
-
-```bash
-docker-compose up --build
-```
-
----
-
 ## 📁 Folder Structure
 
 ```bash
@@ -136,7 +79,7 @@ src/
 
 ---
 
-## 📟 MongoDB Schemas
+<!-- ## 📟 MongoDB Schemas
 
 ### User
 
@@ -203,7 +146,7 @@ src/
 }
 ```
 
----
+--- -->
 
 ## 🔗 API Endpoints
 
