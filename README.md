@@ -4,20 +4,20 @@ A full-featured backend API for a Task Management SaaS platform. Built with **No
 
 ---
 
-## ✨ Features
+## Features
 
-- ✅ Authentication (JWT + Cookies)
-- 👤 User & Role Management
-- 🢑 Project & Team Management
-- ✅ Task Tracking with Subtasks
-- 🍿 Labels, Comments, and Activity Logs
-- 🛢️ MongoDB Integration
-- 🐳 Dockerized Deployment
-- 🧪 Integration Tests with Jest & Supertest
+- Authentication (JWT + Cookies)
+- User & Role Management
+- Project & Team Management
+- Task Tracking with Subtasks
+- Labels, Comments, and Activity Logs
+- MongoDB Integration
+- Dockerized Deployment
+- Integration Tests with Jest & Supertest
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Node.js**, **Express**
 - **MongoDB**, **Mongoose**
@@ -27,7 +27,7 @@ A full-featured backend API for a Task Management SaaS platform. Built with **No
 
 ---
 
-## 🧑‍💻 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -47,7 +47,7 @@ REFRESH_TOKEN_SECRET=yourrefreshtokensecret
 
 ---
 
-## 💻 Local Development
+## Local Development
 
 ### Install Dependencies
 
@@ -63,7 +63,7 @@ npm run dev
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```bash
 src/
@@ -79,7 +79,7 @@ src/
 
 ---
 
-<!-- ## 📟 MongoDB Schemas
+<!-- ## MongoDB Schemas
 
 ### User
 
@@ -148,7 +148,7 @@ src/
 
 --- -->
 
-## 🔗 API Endpoints
+## API Endpoints
 
 Explore the complete API documentation for this project:
 
@@ -156,7 +156,7 @@ Explore the complete API documentation for this project:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Run All Tests
 
@@ -178,6 +178,6 @@ npm test -- -t "User Management API"
 
 ---
 
-## 📄 License
+## License
 
 [MIT](./LICENSE)
