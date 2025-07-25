@@ -1,6 +1,7 @@
-# Task Management SaaS App – Backend
+# TaskFlow – Backend
 
-A full-featured backend API for a Task Management SaaS platform. Built with **Node.js**, **Express**, and **MongoDB**, this app supports features like user and team management, projects, tasks, subtasks, labels, comments, and activity tracking.
+TaskFlow is an open-source, full-featured backend API designed for a Task Management. Built with Node.js, Express, and MongoDB, it offers robust support for features such as user and team management, projects, tasks and subtasks, labels, comments, and activity tracking.
+
 
 ---
 
@@ -32,8 +33,8 @@ A full-featured backend API for a Task Management SaaS platform. Built with **No
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/task-manager-backend.git
-cd task-manager-backend
+git clone https://github.com/shax26/taskflow-backend.git
+cd taskflow-backend
 ```
 
 ### 2. Create `.env` File
